@@ -4,26 +4,26 @@ const BlogPost = require("../models/blogPost");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  // BlogPost.find({})
-  //   .sort({ date: "descending" })
-  //   .then(data => {
-  //     console.log(data);
-  //     return res.json(data);
-  //   })
-  //   .catch(err => {
-  //     return res.json({ msg: err });
-  //   });
-
-  // alternative method...
   BlogPost.find({})
     .sort({ date: "descending" })
-    .exec((err, docs) => {
-      if (err) {
-        return res.json({ msg: "A database error occurred..." });
-      }
-      console.log(docs);
-      return res.json(docs);
+    .then(data => {
+      console.log(data);
+      return res.json(data);
+    })
+    .catch(err => {
+      return res.json({ msg: err });
     });
+
+  // alternative method...
+  // BlogPost.find({})
+  //   .sort({ date: "descending" })
+  //   .exec((err, docs) => {
+  //     if (err) {
+  //       return res.json({ msg: "A database error occurred..." });
+  //     }
+  //     console.log(docs);
+  //     return res.json(docs);
+  //   });
 });
 
 router.get("/name", (req, res) => {
