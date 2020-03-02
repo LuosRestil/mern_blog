@@ -32,8 +32,6 @@ class App extends React.Component {
       data: payload
     })
       .then(response => {
-        console.log("Data has been sent to the server.");
-        console.log(response.data);
         this.resetInputs();
         this.getBlogPosts();
       })
@@ -50,10 +48,6 @@ class App extends React.Component {
     });
   };
 
-  displayState = () => {
-    console.log(this.state);
-  };
-
   getBlogPosts = () => {
     axios
       .get("/api")
@@ -62,10 +56,9 @@ class App extends React.Component {
         this.setState({
           posts: data
         });
-        console.log("data received");
       })
       .catch(err => {
-        console.log("error getting data");
+        console.log("Error fetching data...");
       });
   };
 

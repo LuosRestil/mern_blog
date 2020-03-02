@@ -20,10 +20,12 @@ mongoose.connection.on("connected", () => {
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("/api", routes);
 
 if (process.env.NODE_ENV == "production") {
+  console.log('process.env.NODE_ENV == "production"');
   app.use(express.static("client/build"));
 }
+
+app.use("/api", routes);
 
 app.listen(PORT, console.log(`Server listening on port ${PORT}`));

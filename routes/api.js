@@ -7,6 +7,7 @@ router.get("/", (req, res) => {
   BlogPost.find({})
     .sort({ date: "descending" })
     .then(data => {
+      console.log(data);
       return res.json(data);
     })
     .catch(err => {
